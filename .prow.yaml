@@ -9,4 +9,4 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - "go test -coverprofile cover.out"
+        - "go test"
