@@ -6,7 +6,33 @@ presubmits:
       containers:
       - image: golang:1.12.5
         command:
-        - /bin/bash
+        - make
         args:
-        - -c
-        - "go test"
+        - test
+
+  - name: nmath-test-coverage
+    decorate: true
+    always_run: true
+    spec:
+      containers:
+      - image: golang:1.12.5
+        command:
+        - make
+        args:
+        - coverage
+
+  - name: nmath-lint
+    decorate: true
+    always_run: true
+    spec:
+      containers:
+      - image: golang:1.12.5
+        command:
+        - "/bin/sh"
+        - "-c"
+        - |
+          wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.52.2
+          pwd
+          ls -ltrha
+          ls *
+          bin/golangci-lint run --disable-all -E errcheck -v
