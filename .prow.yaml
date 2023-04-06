@@ -1,38 +1,71 @@
 presubmits:
-  - name: nmath-test
+  - name: nmath-unit-test
     decorate: true
     always_run: true
     spec:
       containers:
-      - image: golang:1.12.5
+      - image: nephio/gotests:1
         command:
         - make
         args:
-        - test
-
-  - name: nmath-test-coverage
-    decorate: true
-    always_run: true
-    spec:
-      containers:
-      - image: golang:1.12.5
-        command:
-        - make
-        args:
-        - coverage
+        - unit
 
   - name: nmath-lint
     decorate: true
     always_run: true
     spec:
       containers:
-      - image: golang:1.12.5
+      - image: nephio/gotests:1
+        command:
+        - make
+        args:
+        - lint
+
+  - name: nmath-test-gosec
+    decorate: true
+    always_run: true
+    spec:
+      containers:
+      - image: nephio/gotests:1
+        command:
+        - make
+        args:
+        - gosec
+ 
+postsubmits:
+  - name: build-push-image
+    cluster: default
+    run_if_changed: "^VERSION$"
+    branches:
+    - main
+    - master
+    annotations:
+      description: Build and Push Image to DockerHub
+    decorate: true
+    decoration_config:
+      censor_secrets: true
+    max_concurrency: 1
+    spec:
+      containers:
+      - name: kaniko
+        image: gcr.io/kaniko-project/executor:debug
         command:
         - "/bin/sh"
         - "-c"
         - |
-          wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.52.2
-          pwd
-          ls -ltrha
-          ls *
-          bin/golangci-lint run --disable-all -E errcheck -v
+          executor --context=${PWD} \
+            --dockerfile=Dockerfile --destination=nephio/nmath:${BUILD_ID}
+        volumeMounts:
+          - name: kaniko-secret
+            mountPath: /kaniko/.docker/
+        resources:
+          requests:
+            cpu: 2
+            memory: 2Gi
+      volumes:
+        - name: kaniko-secret
+          secret:
+            secretName: regcred
+            items:
+              - key: .dockerconfigjson
+                path: config.json
