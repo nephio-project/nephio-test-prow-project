@@ -1,10 +1,10 @@
 presubmits:
   - name: nmath-unit-test
     decorate: true
-    always_run: true
+    run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:1
+      - image: nephio/gotests:2
         command:
         - make
         args:
@@ -12,10 +12,10 @@ presubmits:
 
   - name: nmath-lint
     decorate: true
-    always_run: true
+    run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:1
+      - image: nephio/gotests:2
         command:
         - make
         args:
@@ -23,10 +23,10 @@ presubmits:
 
   - name: nmath-test-gosec
     decorate: true
-    always_run: true
+    run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:1
+      - image: nephio/gotests:2
         command:
         - make
         args:
