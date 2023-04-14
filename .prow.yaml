@@ -41,6 +41,24 @@ presubmits:
         command:
         - "/usr/local/bin/checklicense.sh"
 
+  - name: nmath-test-scancode-toolkit
+    decorate: true
+    run_if_changed: "^.*.go$"
+    spec:
+      containers:
+      - image: nephio/scancode-toolkit:v31.2.5
+        command:
+        - "/scancode-toolkit/scancode"
+        args:
+        - "-clipeu"
+        - "."
+        - "--json-pp"
+        - "-"
+        resources:
+          requests:
+            cpu: 4
+            memory: 6Gi
+
 postsubmits:
   - name: build-push-image
     cluster: default
