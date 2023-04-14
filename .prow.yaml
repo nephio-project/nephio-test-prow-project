@@ -56,8 +56,8 @@ presubmits:
         - "-"
         resources:
           requests:
-            cpu: 4
-            memory: 6Gi
+            cpu: 2
+            memory: 2Gi
 
 postsubmits:
   - name: build-push-image
