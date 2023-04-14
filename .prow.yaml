@@ -31,7 +31,19 @@ presubmits:
         - make
         args:
         - gosec
- 
+        
+  - name: nmath-test-license-header
+    decorate: true
+    run_if_changed: "^.*.go$"
+    spec:
+      containers: ghcr.io/google/addlicense:v1.1.1
+      - image: 
+        command:
+        - addlicense
+        args:
+        - "-c"
+        - "."
+
 postsubmits:
   - name: build-push-image
     cluster: default
