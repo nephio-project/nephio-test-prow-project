@@ -36,8 +36,8 @@ presubmits:
     decorate: true
     run_if_changed: "^.*.go$"
     spec:
-      containers: ghcr.io/google/addlicense:v1.1.1
-      - image: 
+      containers:
+      - image: ghcr.io/google/addlicense:v1.1.1
         command:
         - addlicense
         args:
