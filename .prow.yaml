@@ -37,12 +37,9 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: ghcr.io/google/addlicense:v1.1.1
+      - image: nephio/gotests:4
         command:
-        - addlicense
-        args:
-        - "-c"
-        - "."
+        - "/usr/local/bin/checklicense.sh"
 
 postsubmits:
   - name: build-push-image
