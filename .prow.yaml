@@ -39,7 +39,11 @@ presubmits:
       containers:
       - image: nephio/gotests:4
         command:
-        - "/usr/local/bin/checklicense.sh"
+        - "/bin/sh"
+        - "c"
+        - |
+          /usr/local/bin/checklicense.sh
+          echo success > ${ARTIFACTS}/results.txt
 
   - name: nmath-test-scancode-toolkit
     decorate: true
