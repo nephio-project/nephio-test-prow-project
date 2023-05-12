@@ -41,7 +41,7 @@ presubmits:
         command:
         - "/bin/sh"
         args:
-        - "c"
+        - "-c"
         - |
           /usr/local/bin/checklicense.sh
           echo success > ${ARTIFACTS}/results.txt
