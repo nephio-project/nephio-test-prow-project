@@ -52,13 +52,11 @@ presubmits:
       containers:
       - image: nephio/scancode-toolkit:v31.2.5
         command:
-        - "/scancode-toolkit/scancode"
+        - "/bin/sh"
         args:
-        - "-clipeu"
-        - "-n 2"
-        - "."
-        - "-json-pp"
-        - "-"
+        - "-c"
+        - |
+          /scancode-toolkit/scancode -clpeui -n 2 --html ${ARTIFACTS}/scancode_report.html .
         resources:
           requests:
             cpu: 2
