@@ -4,7 +4,7 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:2
+      - image: nephio/gotests:6
         command:
         - make
         args:
@@ -15,7 +15,7 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:2
+      - image: nephio/gotests:6
         command:
         - make
         args:
@@ -26,7 +26,7 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:2
+      - image: nephio/gotests:6
         command:
         - make
         args:
@@ -37,7 +37,7 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:4
+      - image: nephio/gotests:6
         command:
         - "/bin/sh"
         - "c"
@@ -50,14 +50,15 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/scancode-toolkit:v31.2.5
+      - image: nephio/scancode-toolkit:v32.2.0
         command:
         - "/scancode-toolkit/scancode"
         args:
         - "-clipeu"
+        - "-n 2"
         - "."
-        - "--json-pp"
-        - "-"
+        - "--html"
+        - "${ARTIFACTS}/scancode_report.html"
         resources:
           requests:
             cpu: 2
