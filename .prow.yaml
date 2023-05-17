@@ -57,8 +57,8 @@ presubmits:
         - "-clipeu"
         - "-n 2"
         - "."
-        - "--html"
-        - "${ARTIFACTS}/scancode_report.html"
+        - "-json-pp"
+        - "-"
         resources:
           requests:
             cpu: 2
