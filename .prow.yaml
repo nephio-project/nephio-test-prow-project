@@ -40,7 +40,7 @@ presubmits:
       - image: nephio/gotests:6
         command:
         - "/bin/sh"
-        - "c"
+        - "-c"
         - |
           /usr/local/bin/checklicense.sh
           echo success > ${ARTIFACTS}/results.txt
