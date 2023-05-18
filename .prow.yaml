@@ -56,7 +56,7 @@ presubmits:
         args:
         - "-c"
         - |
-          /scancode-toolkit/scancode -clpeui -n 2 --html ${ARTIFACTS}/scancode_report.html . --tallies-with-details
+          /scancode-toolkit/scancode --ignore "whitelist.json" -clpeui -n 2 --html ${ARTIFACTS}/scancode_report.html . --tallies-with-details
         resources:
           requests:
             cpu: 2
