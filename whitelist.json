@@ -6,6 +6,7 @@
   ],
   "exclude": [
     ".git/*",
-    ".prow.yaml"
+    ".prow.yaml",
+    "results/*"
   ]
 }
