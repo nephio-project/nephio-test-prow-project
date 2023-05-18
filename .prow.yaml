@@ -62,6 +62,20 @@ presubmits:
             cpu: 2
             memory: 2Gi
 
+  - name: nmath-lichen
+    decorate: true
+    run_if_changed: "^.*.go$"
+    spec:
+      containers:
+      - image: nephio/gotests:6
+        command:
+        - "/bin/sh"
+        args:
+        - "-c"
+        - |
+          go build -o nm .
+          lichen nm
+
 postsubmits:
   - name: build-push-image
     cluster: default
