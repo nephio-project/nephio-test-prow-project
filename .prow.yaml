@@ -56,7 +56,7 @@ presubmits:
         args:
         - "-c"
         - |
-          /scancode-toolkit/scancode -clpeui -n 2 --html ${ARTIFACTS}/scancode_report.html .
+          /scancode-toolkit/scancode -clpeui -n 2 --html ${ARTIFACTS}/scancode_report.html . --summary-with-details
         resources:
           requests:
             cpu: 2
