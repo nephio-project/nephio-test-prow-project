@@ -5,5 +5,7 @@
     "BSD-3-Clause"
   ],
   "exclude": [
+    ".git/*",
+    ".prow.yaml"
   ]
 }
