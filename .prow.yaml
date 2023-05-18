@@ -76,6 +76,20 @@ presubmits:
           go build -o nm .
           lichen nm
 
+  - name: nmath-fossology
+    decorate: true
+    always_run: true
+    spec:
+      containers:
+      - image: fossology/fossology:scanner
+        command:
+        - "/bin/bash"
+        args:
+        - "-c"
+        - |
+          /bin/fossologyscanner repo nomos ojo copyright keyword
+          cp -R results ${ARTIFACTS}/
+
 postsubmits:
   - name: build-push-image
     cluster: default
