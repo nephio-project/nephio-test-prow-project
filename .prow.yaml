@@ -42,8 +42,7 @@ presubmits:
         - "/bin/sh"
         - "-c"
         - |
-          /usr/local/bin/checklicense.sh
-          echo success > ${ARTIFACTS}/results.txt
+          /usr/local/bin/checklicense.sh > ${ARTIFACTS}/license_headers_results.txt
 
   - name: nmath-test-scancode-toolkit
     decorate: true
