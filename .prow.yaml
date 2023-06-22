@@ -4,7 +4,7 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:7
+      - image: nephio/gotests:1671656214984921088
         command:
         - make
         args:
@@ -15,7 +15,7 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:7
+      - image: nephio/gotests:1671656214984921088
         command:
         - make
         args:
@@ -26,7 +26,7 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:7
+      - image: nephio/gotests:1671656214984921088
         command:
         - make
         args:
@@ -37,7 +37,7 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:7
+      - image: nephio/gotests:1671656214984921088
         command:
         - "/bin/sh"
         - "-c"
@@ -66,14 +66,9 @@ presubmits:
     run_if_changed: "^.*.go$"
     spec:
       containers:
-      - image: nephio/gotests:7
+      - image: nephio/gotests:1671656214984921088
         command:
-        - "/bin/sh"
-        args:
-        - "-c"
-        - |
-          go build -o nm .
-          lichen nm
+        - "/usr/local/bin/lichen.sh"
 
   - name: nmath-fossology
     decorate: true
