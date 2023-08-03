@@ -51,3 +51,4 @@ ifeq ($(CONTAINER_RUNNABLE), 0)
 else
 	gosec ./...
 endif
+
