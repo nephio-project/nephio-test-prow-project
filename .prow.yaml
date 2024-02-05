@@ -110,7 +110,7 @@ presubmits:
         - "/bin/sh"
         - "-c"
         - |
-          find / -iname porch_build
+          executor --context=/home/prow/go/src/porch_build/ --dockerfile=porch/build/Dockerfile --destination=nephio/porch-server:v1.9.9
         volumeMounts:
           - name: kaniko-secret
             mountPath: /kaniko/.docker/
