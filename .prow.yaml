@@ -84,6 +84,48 @@ presubmits:
           /bin/fossologyscanner --report SPDX_JSON repo nomos ojo copyright keyword
           cp -R results ${ARTIFACTS}/
 
+
+  - name: build-push-porch-server-image
+    cluster: default
+    always_run: true
+    branches:
+    - main
+    - master
+    annotations:
+      description: Build and Push Image to DockerHub
+    decorate: true
+    decoration_config:
+      censor_secrets: true
+    max_concurrency: 1
+    extra_refs:
+    - org: nephio-project
+      repo: porch
+      base_ref: master
+      path_alias: "porch_build/porch"
+    spec:
+      containers:
+      - name: kaniko
+        image: gcr.io/kaniko-project/executor:debug
+        command:
+        - "/bin/sh"
+        - "-c"
+        - |
+          find / -iname porch_build
+        volumeMounts:
+          - name: kaniko-secret
+            mountPath: /kaniko/.docker/
+        resources:
+          requests:
+            cpu: 2
+            memory: 2Gi
+      volumes:
+        - name: kaniko-secret
+          secret:
+            secretName: regcred
+            items:
+              - key: .dockerconfigjson
+                path: config.json
+
 postsubmits:
   - name: build-push-image
     cluster: default
