@@ -150,7 +150,7 @@ presubmits:
         - "/bin/sh"
         - "-c"
         - |
-          executor --context=/workspace/ --dockerfile=porch/func/Dockerfile-wrapperserver --destination=radoslawc/porch-wrapper-server:v1.9.9
+          executor --context=/home/prow/go/src/porch_build/ --dockerfile=porch/func/Dockerfile-wrapperserver --destination=nephio/porch-wrapper-server:v1.9.9
         volumeMounts:
           - name: kaniko-secret
             mountPath: /kaniko/.docker/
