@@ -10,7 +10,7 @@ presubmits:
         args:
         - unit
 
-  - name: nmath-lint
+  - name: nmath-lint-1
     decorate: true
     run_if_changed: "^.*.go$"
     spec:
