@@ -1,11 +1,8 @@
 approvers:
-  - aravind254
-  - raaravind254
-  - radoslawc
-reviewers:
-  - aravind254
-  - raaravind254
   - radoslawc
   - vjayaramrh
-  - electrocucaracha
-  - johnbelamaric
+  - efiacor
+reviewers:
+  - radoslawc
+  - vjayaramrh
+  - efiacor
