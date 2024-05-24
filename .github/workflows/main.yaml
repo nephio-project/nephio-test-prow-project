@@ -1,1 +1,37 @@
+name: Sample Tests
+on:
+  push:
+    paths-ignore:
+      - "docs/**"
+      - "release/**"
+      - "deployments/**"
+  pull_request:
+    paths-ignore:
+      - "docs/**"
+      - "release/**"
+      - "deployments/**"
 
+jobs:
+  tests:
+    name: Sample Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '>=1.22.2'
+      - name: Build
+        run: go build -o bin/nmath
+        shell: bash
+      - name: Test
+        run: bin/nmath > test.log
+      - name: Archive logs
+        if: always()
+        uses: actions/upload-artifact@v4  
+        with:
+          name: test.log
+          path: test.log
+          compression-level: 0
