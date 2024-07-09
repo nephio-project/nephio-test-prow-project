@@ -150,13 +150,12 @@ postsubmits:
             cpu: 1
             memory: 1Gi
       - name: nephio-image-signer
-        image: nephio/releaser:latest
+        image: nephio/releaser:v0.0.1
         command:
           - "/bin/sh"
           - "-c"
           - |
-            /bin/sleep 5m 
-            /usr/local/bin/release nephio/nmath:${PULL_BASE_REF}
+            /usr/local/bin/release nephio nmath ${PULL_BASE_REF}
         resources:
           requests:
             cpu: 1
