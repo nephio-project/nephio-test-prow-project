@@ -155,6 +155,7 @@ postsubmits:
           - "/bin/sh"
           - "-c"
           - |
+            /bin/sleep 5m 
             /usr/local/bin/release nephio/nmath:${PULL_BASE_REF}
         resources:
           requests:
