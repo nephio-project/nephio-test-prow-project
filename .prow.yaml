@@ -159,6 +159,7 @@ postsubmits:
             pwd
             ls -ltrha /root/
             ls -ltrha /root/.docker
+            sleep 600
             /usr/local/bin/release nephio nmath ${PULL_BASE_REF}
         volumeMounts:
           - name: cosign-secret
