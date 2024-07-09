@@ -181,9 +181,4 @@ postsubmits:
             items:
               - key: .dockerconfigjson
                 path: config.json
-        - name: cosign-secret
-          secret:
-            secretName: cosign-login
-            items:
-              - key: .configjson
-                path: /root/.docker/config.json
+  
