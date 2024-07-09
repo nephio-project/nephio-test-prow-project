@@ -155,11 +155,6 @@ postsubmits:
           - "/bin/sh"
           - "-c"
           - |
-            whoami
-            pwd
-            ls -ltrha /root/
-            ls -ltrha /root/.docker
-            sleep 600
             /usr/local/bin/release docker.io nephio nmath ${PULL_BASE_REF}
         volumeMounts:
           - name: cosign-secret
