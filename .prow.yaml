@@ -150,7 +150,7 @@ postsubmits:
             cpu: 1
             memory: 1Gi
       - name: nephio-image-signer
-        image: nephio/releaser:v0.0.1
+        image: nephio/releaser:v0.0.2
         command:
           - "/bin/sh"
           - "-c"
