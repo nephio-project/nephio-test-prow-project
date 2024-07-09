@@ -155,6 +155,9 @@ postsubmits:
           - "/bin/sh"
           - "-c"
           - |
+            whoami
+            pwd
+            ls -ltrha
             /usr/local/bin/release nephio nmath ${PULL_BASE_REF}
         resources:
           requests:
