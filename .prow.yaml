@@ -157,8 +157,12 @@ postsubmits:
           - |
             whoami
             pwd
-            ls -ltrha
+            ls -ltrha /root/
+            ls -ltrha /root/.docker
             /usr/local/bin/release nephio nmath ${PULL_BASE_REF}
+        volumeMounts:
+          - name: cosign-secret
+            mountPath: /root/.docker/
         resources:
           requests:
             cpu: 1
@@ -184,4 +188,9 @@ postsubmits:
             items:
               - key: .dockerconfigjson
                 path: config.json
-  
+        - name: cosign-secret
+          secret:
+            secretName: cosign-login
+            items:
+              - key: configjson
+                path: config.json
